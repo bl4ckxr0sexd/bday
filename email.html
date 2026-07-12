@@ -1,36 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Birthday Invitation</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<!--
+  ============================================================================
+  BIRTHDAY INVITATION — SEND-READY HTML LETTER
+  ============================================================================
+  This is plain, static HTML. No scripts, no build. Send the raw source of this
+  file as the HTML body through your SMTP sender (Content-Type: text/html;
+  charset=UTF-8).
 
-  <script>
-    /* ========================================================================
-       ✏️  EDIT YOUR DETAILS HERE  —  this is the ONLY place you change.
-       After editing, just save and refresh this page in your browser.
-       ======================================================================== */
-    window.INVITE_CONFIG = {
-      name:       "Alex",                              // the birthday person's name
-      greeting:   "there",                             // "Hi there!" — or put a guest's name
-      landingUrl: "https://bday-gold-pi.vercel.app/",  // your landing page (the button link)
-      date:       "Wednesday, July 15, 2026",          // the date line
-      time:       "4:00 PM Onwards"                    // the time line
-    };
-    /* ===================== (stop editing below this line) ==================== */
-  </script>
+  TO PERSONALISE: edit the 5 things below, then save. Each spot in the file is
+  marked with an "EDIT:" label so you can find it quickly.
+    EDIT: NAME     the birthday person's name        (appears 4 times)
+    EDIT: GREETING how you greet the reader           (1 time)
+    EDIT: DATE     the date line                       (1 time)
+    EDIT: TIME     the time line                       (1 time)
+    EDIT: URL      your landing page link              (appears 3 times)
+  ============================================================================
+-->
+<html lang="en" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="x-apple-disable-message-reformatting" />
+  <title>You're Invited!</title>
+  <!--[if mso]>
+  <style>* { font-family: Arial, Helvetica, sans-serif !important; }</style>
+  <![endif]-->
 </head>
 
-<body style="margin:0; padding:0; background-color:#fff2f5;">
-<div style="margin:0; padding:0; width:100%; background-color:#fff2f5; background-image:linear-gradient(135deg,#fff2f5 0%,#eaf7ff 100%); font-family:'Poppins','Segoe UI',Helvetica,Arial,sans-serif;">
+<body style="margin:0; padding:0; background-color:#fff2f5; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%;">
+<div style="margin:0; padding:0; width:100%; background-color:#fff2f5; font-family:'Poppins','Segoe UI',Helvetica,Arial,sans-serif;">
 
   <!-- Preheader: preview text in the inbox, hidden in the body -->
   <div style="display:none; max-height:0; overflow:hidden; opacity:0; color:#fff2f5; font-size:1px; line-height:1px;">
-    You're invited! 🎉 <span data-cfg="name">Alex</span>'s birthday party — tap to see the details.
+    You're invited to a birthday celebration! 🎉 Tap to see the details.
   </div>
 
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#fff2f5; background-image:linear-gradient(135deg,#fff2f5 0%,#eaf7ff 100%);">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#fff2f5;">
     <tr>
       <td align="center" style="padding:32px 16px;">
 
@@ -48,7 +54,7 @@
               </div>
 
               <h1 style="margin:22px 0 0 0; color:#ffffff; font-size:40px; line-height:1.1; font-weight:700; font-family:'Fredoka','Poppins',Helvetica,Arial,sans-serif; text-shadow:0 2px 8px rgba(0,0,0,0.12);">
-                <span data-cfg="name">Alex</span>&rsquo;s<br>Birthday Bash!
+                <!-- EDIT: NAME -->Alex&rsquo;s<br>Birthday Bash!
               </h1>
 
             </td>
@@ -58,10 +64,10 @@
           <tr>
             <td style="padding:40px 40px 8px 40px;">
               <p style="margin:0 0 16px 0; color:#3a2b3f; font-size:18px; line-height:1.6;">
-                Hi <strong style="color:#ff6b8a;"><span data-cfg="greeting">there</span></strong>! 👋
+                Hi <strong style="color:#ff6b8a;"><!-- EDIT: GREETING -->there</strong>! 👋
               </p>
               <p style="margin:0 0 16px 0; color:#5a4b5f; font-size:16px; line-height:1.7;">
-                The countdown is on! <strong><span data-cfg="name">Alex</span></strong> is having a birthday
+                The countdown is on! <strong><!-- EDIT: NAME -->Alex</strong> is having a birthday
                 party, and it just wouldn&rsquo;t be the same without you.
                 We&rsquo;re throwing a celebration full of cake, games, and good vibes &mdash;
                 and we&rsquo;d love for you to be there.
@@ -80,26 +86,40 @@
                   <td align="center" style="padding:20px 16px;">
                     <div style="color:#0077a3; font-size:13px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase;">Save the Date</div>
                     <div style="color:#1a1a2e; font-size:22px; font-weight:700; font-family:'Fredoka','Poppins',Helvetica,Arial,sans-serif; margin-top:4px;">
-                      <span data-cfg="date">Wednesday, July 15, 2026</span>
+                      <!-- EDIT: DATE -->Wednesday, July 15, 2026
                     </div>
-                    <div style="color:#5a4b5f; font-size:15px; margin-top:2px;"><span data-cfg="time">4:00 PM Onwards</span></div>
+                    <div style="color:#5a4b5f; font-size:15px; margin-top:2px;"><!-- EDIT: TIME -->4:00 PM Onwards</div>
                   </td>
                 </tr>
               </table>
             </td>
           </tr>
 
-          <!-- CTA BUTTON -->
+          <!-- CTA BUTTON (bulletproof: VML for Outlook, styled anchor elsewhere) -->
+          <!-- EDIT: URL — the landing-page link appears in THREE href="" spots below
+               (the Outlook button, the normal button, and the fallback link).
+               Update all three to the same URL. -->
           <tr>
             <td align="center" style="padding:28px 40px 40px 40px;">
-              <a data-cfg-href="landingUrl" href="https://bday-gold-pi.vercel.app/" target="_blank"
+
+              <!--[if mso]>
+              <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://bday-gold-pi.vercel.app/" style="height:56px;v-text-anchor:middle;width:280px;" arcsize="50%" fillcolor="#ff6b8a" stroke="f">
+                <w:anchorlock/>
+                <center style="color:#ffffff;font-family:Arial,sans-serif;font-size:18px;font-weight:bold;">View Invitation &amp; Details</center>
+              </v:roundrect>
+              <![endif]-->
+
+              <!--[if !mso]><!-- -->
+              <a href="https://bday-gold-pi.vercel.app/" target="_blank"
                  style="display:inline-block; background-color:#ff6b8a; background-image:linear-gradient(135deg,#ff8fa3 0%,#ff6b8a 100%); color:#ffffff; font-size:18px; font-weight:700; font-family:'Fredoka','Poppins',Helvetica,Arial,sans-serif; text-decoration:none; padding:18px 44px; border-radius:999px; box-shadow:0 10px 24px rgba(255,107,138,0.45);">
                 View Invitation &amp; Details &nbsp;&rarr;
               </a>
+              <!--<![endif]-->
 
               <p style="margin:18px 0 0 0; color:#a394ab; font-size:12px; line-height:1.5;">
                 Button not working? Copy this link into your browser:<br>
-                <a data-cfg-href="landingUrl" data-cfg="landingUrl" href="https://bday-gold-pi.vercel.app/" target="_blank" style="color:#5bc0eb; text-decoration:underline; word-break:break-all;">https://bday-gold-pi.vercel.app/</a>
+                <!-- EDIT: URL -->
+                <a href="https://bday-gold-pi.vercel.app/" target="_blank" style="color:#5bc0eb; text-decoration:underline; word-break:break-all;">https://bday-gold-pi.vercel.app/</a>
               </p>
             </td>
           </tr>
@@ -110,7 +130,7 @@
               <div style="font-size:20px; line-height:20px; margin-bottom:8px;">🎈</div>
               <p style="margin:0; color:#a394ab; font-size:13px; line-height:1.6;">
                 Can&rsquo;t wait to celebrate with you!<br>
-                With love, <span data-cfg="name">Alex</span>&rsquo;s family
+                With love, <!-- EDIT: NAME -->Alex&rsquo;s family
               </p>
             </td>
           </tr>
@@ -122,24 +142,5 @@
     </tr>
   </table>
 </div>
-
-  <script>
-    /* Fills the email from INVITE_CONFIG above. Runs when you open this file in
-       a browser. (See the sending note in README — open in a browser first,
-       then copy the page into Gmail so these values come along.) */
-    (function () {
-      var c = window.INVITE_CONFIG || {};
-      function apply(attr, fn) {
-        var nodes = document.querySelectorAll("[" + attr + "]");
-        for (var i = 0; i < nodes.length; i++) {
-          var key = nodes[i].getAttribute(attr);
-          if (c[key] !== undefined && c[key] !== null) fn(nodes[i], c[key]);
-        }
-      }
-      apply("data-cfg", function (el, val) { el.textContent = val; });
-      apply("data-cfg-href", function (el, val) { el.setAttribute("href", val); });
-      if (c.name) document.title = c.name + "'s Birthday Invitation";
-    })();
-  </script>
 </body>
 </html>

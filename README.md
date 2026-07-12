@@ -45,27 +45,21 @@ You never edit `public/` — it's regenerated from `templates/` + `.env`.
 | `DRESS_CODE` / `DRESS_CODE_NOTE` | e.g. "Bright & Colorful" / "..."              |
 
 ### Email letter (`email.html`)
-Open `email.html` and edit the `INVITE_CONFIG` block near the top (inside the
-first `<script>`). It's the **only** place you change — the email fills itself
-from it when you open the page:
+`email.html` is a **plain, static, send-ready HTML letter** — no scripts, no
+build. Edit the values by hand (each spot is marked with an `EDIT:` comment; the
+list is at the top of the file):
 
-```js
-window.INVITE_CONFIG = {
-  name:       "Alex",
-  greeting:   "there",                            // "Hi there!" — or a guest's name
-  landingUrl: "https://bday-gold-pi.vercel.app/", // the button link
-  date:       "Wednesday, July 15, 2026",
-  time:       "4:00 PM Onwards"
-};
-```
+| Marker          | What to change                          | Times it appears |
+|-----------------|-----------------------------------------|------------------|
+| `EDIT: NAME`    | birthday person's name                  | 4                |
+| `EDIT: GREETING`| greeting ("Hi there!") — or a name      | 1                |
+| `EDIT: DATE`    | the date line                           | 1                |
+| `EDIT: TIME`    | the time line                           | 1                |
+| `EDIT: URL`     | landing-page link (in 3 `href` spots)   | 3                |
 
-Save, then refresh the page in your browser to preview.
-
-**How to send it:** open `email.html` in your browser (this fills in your
-details), then **Select All (Cmd/Ctrl+A) → Copy → paste into a Gmail compose
-window** → send. Pasting the rendered page carries the styling and your values
-across. (Editing `INVITE_CONFIG` uses a tiny script to fill the page; email apps
-strip scripts, so copy the *rendered* page rather than the raw file.)
+**How to send it:** feed the raw contents of `email.html` to your SMTP sender as
+the HTML body, with `Content-Type: text/html; charset=UTF-8`. Because it's
+static HTML with inline styles, it renders correctly in email clients as-is.
 
 ## Setup — do these in order
 
@@ -93,9 +87,9 @@ vercel --prod        # promote to production
 Copy your live URL — you'll use it in the email in step 4.
 
 ### 4. Send the email
-Open `email.html`, set `INVITE_CONFIG` at the top (including your Vercel URL from
-step 3), and refresh to preview. To send: open it in your browser, Select All →
-Copy → paste into a Gmail compose window → send.
+Edit the `EDIT:` spots in `email.html` (name, greeting, date, time, and your
+Vercel URL from step 3), then send the file's raw HTML as the message body
+through your SMTP sender (`Content-Type: text/html; charset=UTF-8`).
 
 ## Local development
 ```bash
