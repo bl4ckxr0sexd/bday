@@ -1,29 +1,36 @@
 <!--
   ============================================================================
-  BIRTHDAY INVITATION EMAIL  (template)
+  BIRTHDAY INVITATION EMAIL  —  SINGLE, SELF-CONTAINED FILE
   ============================================================================
-  This is a TEMPLATE. The build (`npm run build`) injects values from .env
-  and writes the final file to public/email.html.
 
-  Build-time tokens (filled from .env):
-    {{COUSIN_NAME}}  - the birthday kid's name
-    {{GUEST_NAME}}   - how the email greets the reader (e.g. "there")
-    {{LANDING_URL}}  - the landing page URL
+  HOW TO USE
+    1. Edit the values listed under "CONFIG" below. The quickest way: use your
+       editor's Find & Replace (Cmd/Ctrl + F) on the current value. Each spot in
+       the file is also tagged with a comment like  <!-- cfg: COUSIN_NAME -->
+       so you can find every occurrence.
+    2. Copy the ENTIRE file.
+    3. Paste it into your email tool's "HTML" / "<> code" mode and send.
 
-  Tip: to personalise per recipient instead of a fixed greeting, set GUEST_NAME
-  in .env to your email tool's merge tag (e.g. *|FNAME|*).
+  WHY EDIT BY HAND (no variables)?
+    Email apps strip out JavaScript, so an email can't use live config — the
+    values have to be written directly into the HTML. This file is fully
+    self-contained (all styles inline, no build step, nothing external).
 
-  Notes:
-    - All styling is INLINE for maximum email-client compatibility.
-    - Uses table-based layout (the only reliable email layout method).
-    - A "bulletproof" VML fallback keeps the button styled in Outlook.
+  ----------------------------------------------------------------------------
+  CONFIG  —  current value  →  what it is
+  ----------------------------------------------------------------------------
+    Rohan                             →  the birthday person's name
+    there                             →  the greeting ("Hi there!") — use a name if you want
+    https://your-project.vercel.app   →  your landing page URL (the button link)
+    Wednesday, July 15, 2026          →  the date line
+    4:00 PM Onwards                   →  the time line
   ============================================================================
 -->
 <div style="margin:0; padding:0; width:100%; background-color:#fff2f5; background-image:linear-gradient(135deg,#fff2f5 0%,#eaf7ff 100%); font-family:'Poppins','Segoe UI',Helvetica,Arial,sans-serif;">
 
   <!-- Preheader: shows as preview text in the inbox, hidden in the body -->
   <div style="display:none; max-height:0; overflow:hidden; opacity:0; color:#fff2f5; font-size:1px; line-height:1px;">
-    You're invited! 🎉 {{COUSIN_NAME}}'s birthday party — tap to see the details.
+    You're invited! 🎉 <!-- cfg: COUSIN_NAME -->Rohan's birthday party — tap to see the details.
   </div>
 
   <!-- Outer wrapper table (full width, centers the card) -->
@@ -46,7 +53,7 @@
               </div>
 
               <h1 style="margin:22px 0 0 0; color:#ffffff; font-size:40px; line-height:1.1; font-weight:700; font-family:'Fredoka','Poppins',Helvetica,Arial,sans-serif; text-shadow:0 2px 8px rgba(0,0,0,0.12);">
-                {{COUSIN_NAME}}&rsquo;s<br>Birthday Bash!
+                <!-- cfg: COUSIN_NAME -->Rohan&rsquo;s<br>Birthday Bash!
               </h1>
 
             </td>
@@ -56,10 +63,10 @@
           <tr>
             <td style="padding:40px 40px 8px 40px;">
               <p style="margin:0 0 16px 0; color:#3a2b3f; font-size:18px; line-height:1.6;">
-                Hi <strong style="color:#ff6b8a;">{{GUEST_NAME}}</strong>! 👋
+                Hi <strong style="color:#ff6b8a;"><!-- cfg: GUEST_NAME -->there</strong>! 👋
               </p>
               <p style="margin:0 0 16px 0; color:#5a4b5f; font-size:16px; line-height:1.7;">
-                The countdown is on! <strong>{{COUSIN_NAME}}</strong> is having a birthday
+                The countdown is on! <strong><!-- cfg: COUSIN_NAME -->Rohan</strong> is having a birthday
                 party, and it just wouldn&rsquo;t be the same without you.
                 We&rsquo;re throwing a celebration full of cake, games, and good vibes &mdash;
                 and we&rsquo;d love for you to be there.
@@ -78,9 +85,9 @@
                   <td align="center" style="padding:20px 16px;">
                     <div style="color:#0077a3; font-size:13px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase;">Save the Date</div>
                     <div style="color:#1a1a2e; font-size:22px; font-weight:700; font-family:'Fredoka','Poppins',Helvetica,Arial,sans-serif; margin-top:4px;">
-                      {{PARTY_DATE_NOTE}}, {{PARTY_DATE}}
+                      <!-- cfg: DATE -->Wednesday, July 15, 2026
                     </div>
-                    <div style="color:#5a4b5f; font-size:15px; margin-top:2px;">{{PARTY_TIME}} {{PARTY_TIME_NOTE}}</div>
+                    <div style="color:#5a4b5f; font-size:15px; margin-top:2px;"><!-- cfg: TIME -->4:00 PM Onwards</div>
                   </td>
                 </tr>
               </table>
@@ -92,14 +99,14 @@
             <td align="center" style="padding:28px 40px 40px 40px;">
 
               <!--[if mso]>
-              <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{LANDING_URL}}" style="height:56px;v-text-anchor:middle;width:280px;" arcsize="50%" fillcolor="#ff6b8a" stroke="f">
+              <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://your-project.vercel.app" style="height:56px;v-text-anchor:middle;width:280px;" arcsize="50%" fillcolor="#ff6b8a" stroke="f">
                 <w:anchorlock/>
                 <center style="color:#ffffff;font-family:sans-serif;font-size:18px;font-weight:bold;">View Invitation &amp; Details</center>
               </v:roundrect>
               <![endif]-->
 
               <!--[if !mso]><!-- -->
-              <a href="{{LANDING_URL}}" target="_blank"
+              <a href="https://your-project.vercel.app" target="_blank"
                  style="display:inline-block; background-color:#ff6b8a; background-image:linear-gradient(135deg,#ff8fa3 0%,#ff6b8a 100%); color:#ffffff; font-size:18px; font-weight:700; font-family:'Fredoka','Poppins',Helvetica,Arial,sans-serif; text-decoration:none; padding:18px 44px; border-radius:999px; box-shadow:0 10px 24px rgba(255,107,138,0.45);">
                 View Invitation &amp; Details &nbsp;&rarr;
               </a>
@@ -107,7 +114,8 @@
 
               <p style="margin:18px 0 0 0; color:#a394ab; font-size:12px; line-height:1.5;">
                 Button not working? Copy this link into your browser:<br>
-                <a href="{{LANDING_URL}}" target="_blank" style="color:#5bc0eb; text-decoration:underline; word-break:break-all;">{{LANDING_URL}}</a>
+                <!-- cfg: LANDING_URL (appears twice above + here) -->
+                <a href="https://your-project.vercel.app" target="_blank" style="color:#5bc0eb; text-decoration:underline; word-break:break-all;">https://your-project.vercel.app</a>
               </p>
             </td>
           </tr>
@@ -118,7 +126,7 @@
               <div style="font-size:20px; line-height:20px; margin-bottom:8px;">🎈</div>
               <p style="margin:0; color:#a394ab; font-size:13px; line-height:1.6;">
                 Can&rsquo;t wait to celebrate with you!<br>
-                With love, {{COUSIN_NAME}}&rsquo;s family
+                With love, <!-- cfg: COUSIN_NAME -->Rohan&rsquo;s family
               </p>
             </td>
           </tr>

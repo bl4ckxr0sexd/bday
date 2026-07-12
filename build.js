@@ -30,17 +30,16 @@ const TEMPLATES_DIR = path.join(ROOT, 'templates');
 const OUT_DIR = path.join(ROOT, 'public');
 
 // Files to build: [source template, output name]
+// (The email is a standalone, hand-edited file — email.html at the repo root —
+//  because email clients can't run a build. It is NOT part of this pipeline.)
 const BUILDS = [
   ['index.template.html', 'index.html'],
-  ['email.template.html', 'email.html'],
 ];
 
 // Every configurable key with a safe default, so the build never fails even
 // with no .env present.
 const DEFAULTS = {
   COUSIN_NAME: 'Your Cousin',
-  GUEST_NAME: 'there',
-  LANDING_URL: 'https://your-project.vercel.app',
   DOWNLOAD_URL: 'https://drive.google.com/file/d/YOUR_GOOGLE_DRIVE_FILE_ID/view?usp=sharing',
   TRACKING_ENDPOINT: '',
   PARTY_DATE: 'July 15, 2026',
@@ -105,7 +104,6 @@ function inject(template, config) {
 function warnPlaceholders(config) {
   const checks = [
     ['DOWNLOAD_URL', 'YOUR_GOOGLE_DRIVE_FILE_ID'],
-    ['LANDING_URL', 'your-project.vercel.app'],
   ];
   checks.forEach(([key, needle]) => {
     if ((config[key] || '').indexOf(needle) !== -1) {
