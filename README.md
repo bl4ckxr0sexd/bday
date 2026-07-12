@@ -35,14 +35,16 @@ You never edit `public/` — it's regenerated from `templates/` + `.env`.
 
 ### Landing page (`.env`)
 
+The landing page is intentionally short: one screen showing the invitation and
+the **Download Invitation** button — all the party details live in the
+downloadable file, so there's nothing to scroll past.
+
 | Key                 | What it controls                                            |
 |---------------------|------------------------------------------------------------|
 | `COUSIN_NAME`       | Birthday person's name (landing page)                      |
 | `DOWNLOAD_URL`      | Google Drive link for the downloadable invitation          |
 | `TRACKING_ENDPOINT` | Apps Script Web App URL (`/exec`). Blank = tracking off     |
-| `PARTY_DATE` / `PARTY_DATE_NOTE` | e.g. "July 15, 2026" / "Wednesday"            |
-| `PARTY_TIME` / `PARTY_TIME_NOTE` | e.g. "4:00 PM" / "Onwards"                    |
-| `DRESS_CODE` / `DRESS_CODE_NOTE` | e.g. "Bright & Colorful" / "..."              |
+| `PARTY_DATE` / `PARTY_TIME` | Used only for the link-preview text when shared    |
 
 ### Email letter (`email.html`)
 `email.html` is a **plain, static, send-ready HTML letter** — no scripts, no

@@ -43,11 +43,7 @@ const DEFAULTS = {
   DOWNLOAD_URL: 'https://drive.google.com/file/d/YOUR_GOOGLE_DRIVE_FILE_ID/view?usp=sharing',
   TRACKING_ENDPOINT: '',
   PARTY_DATE: 'July 15, 2026',
-  PARTY_DATE_NOTE: 'Wednesday',
   PARTY_TIME: '4:00 PM',
-  PARTY_TIME_NOTE: 'Onwards',
-  DRESS_CODE: 'Bright & Colorful',
-  DRESS_CODE_NOTE: 'Come ready to have fun!',
 };
 
 /** Minimal .env parser (no dependency). Supports KEY=value and # comments. */
