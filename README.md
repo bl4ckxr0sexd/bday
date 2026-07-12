@@ -45,17 +45,27 @@ You never edit `public/` — it's regenerated from `templates/` + `.env`.
 | `DRESS_CODE` / `DRESS_CODE_NOTE` | e.g. "Bright & Colorful" / "..."              |
 
 ### Email letter (`email.html`)
-Open `email.html` and follow the `CONFIG` block at the very top. Use Find &
-Replace on the current values (each spot is also tagged with a `<!-- cfg: … -->`
-comment):
+Open `email.html` and edit the `INVITE_CONFIG` block near the top (inside the
+first `<script>`). It's the **only** place you change — the email fills itself
+from it when you open the page:
 
-| Current value                     | What it is                              |
-|-----------------------------------|-----------------------------------------|
-| `Rohan`                           | birthday person's name                  |
-| `there`                           | greeting ("Hi there!") — or use a name  |
-| `https://your-project.vercel.app` | your landing page URL (the button link) |
-| `Wednesday, July 15, 2026`        | the date line                           |
-| `4:00 PM Onwards`                 | the time line                           |
+```js
+window.INVITE_CONFIG = {
+  name:       "Alex",
+  greeting:   "there",                            // "Hi there!" — or a guest's name
+  landingUrl: "https://bday-gold-pi.vercel.app/", // the button link
+  date:       "Wednesday, July 15, 2026",
+  time:       "4:00 PM Onwards"
+};
+```
+
+Save, then refresh the page in your browser to preview.
+
+**How to send it:** open `email.html` in your browser (this fills in your
+details), then **Select All (Cmd/Ctrl+A) → Copy → paste into a Gmail compose
+window** → send. Pasting the rendered page carries the styling and your values
+across. (Editing `INVITE_CONFIG` uses a tiny script to fill the page; email apps
+strip scripts, so copy the *rendered* page rather than the raw file.)
 
 ## Setup — do these in order
 
@@ -83,9 +93,9 @@ vercel --prod        # promote to production
 Copy your live URL — you'll use it in the email in step 4.
 
 ### 4. Send the email
-Open `email.html`, set the values at the top (including your Vercel URL from
-step 3), copy the whole file, and paste it into your email tool's "HTML" /
-"<> code" mode. Send.
+Open `email.html`, set `INVITE_CONFIG` at the top (including your Vercel URL from
+step 3), and refresh to preview. To send: open it in your browser, Select All →
+Copy → paste into a Gmail compose window → send.
 
 ## Local development
 ```bash

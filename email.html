@@ -1,39 +1,35 @@
-<!--
-  ============================================================================
-  BIRTHDAY INVITATION EMAIL  —  SINGLE, SELF-CONTAINED FILE
-  ============================================================================
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Birthday Invitation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-  HOW TO USE
-    1. Edit the values listed under "CONFIG" below. The quickest way: use your
-       editor's Find & Replace (Cmd/Ctrl + F) on the current value. Each spot in
-       the file is also tagged with a comment like  <!-- cfg: COUSIN_NAME -->
-       so you can find every occurrence.
-    2. Copy the ENTIRE file.
-    3. Paste it into your email tool's "HTML" / "<> code" mode and send.
+  <script>
+    /* ========================================================================
+       ✏️  EDIT YOUR DETAILS HERE  —  this is the ONLY place you change.
+       After editing, just save and refresh this page in your browser.
+       ======================================================================== */
+    window.INVITE_CONFIG = {
+      name:       "Alex",                              // the birthday person's name
+      greeting:   "there",                             // "Hi there!" — or put a guest's name
+      landingUrl: "https://bday-gold-pi.vercel.app/",  // your landing page (the button link)
+      date:       "Wednesday, July 15, 2026",          // the date line
+      time:       "4:00 PM Onwards"                    // the time line
+    };
+    /* ===================== (stop editing below this line) ==================== */
+  </script>
+</head>
 
-  WHY EDIT BY HAND (no variables)?
-    Email apps strip out JavaScript, so an email can't use live config — the
-    values have to be written directly into the HTML. This file is fully
-    self-contained (all styles inline, no build step, nothing external).
-
-  ----------------------------------------------------------------------------
-  CONFIG  —  current value  →  what it is
-  ----------------------------------------------------------------------------
-    Rohan                             →  the birthday person's name
-    there                             →  the greeting ("Hi there!") — use a name if you want
-    https://your-project.vercel.app   →  your landing page URL (the button link)
-    Wednesday, July 15, 2026          →  the date line
-    4:00 PM Onwards                   →  the time line
-  ============================================================================
--->
+<body style="margin:0; padding:0; background-color:#fff2f5;">
 <div style="margin:0; padding:0; width:100%; background-color:#fff2f5; background-image:linear-gradient(135deg,#fff2f5 0%,#eaf7ff 100%); font-family:'Poppins','Segoe UI',Helvetica,Arial,sans-serif;">
 
-  <!-- Preheader: shows as preview text in the inbox, hidden in the body -->
+  <!-- Preheader: preview text in the inbox, hidden in the body -->
   <div style="display:none; max-height:0; overflow:hidden; opacity:0; color:#fff2f5; font-size:1px; line-height:1px;">
-    You're invited! 🎉 <!-- cfg: COUSIN_NAME -->Rohan's birthday party — tap to see the details.
+    You're invited! 🎉 <span data-cfg="name">Alex</span>'s birthday party — tap to see the details.
   </div>
 
-  <!-- Outer wrapper table (full width, centers the card) -->
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#fff2f5; background-image:linear-gradient(135deg,#fff2f5 0%,#eaf7ff 100%);">
     <tr>
       <td align="center" style="padding:32px 16px;">
@@ -41,11 +37,10 @@
         <!-- Main card, max 600px wide -->
         <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px; max-width:600px; background-color:#ffffff; border-radius:28px; overflow:hidden; box-shadow:0 20px 50px rgba(255,107,138,0.18);">
 
-          <!-- ===================== HEADER / HERO ===================== -->
+          <!-- HEADER / HERO -->
           <tr>
             <td align="center" style="background-color:#ff6b8a; background-image:linear-gradient(135deg,#ff8fa3 0%,#ff6b8a 45%,#5bc0eb 130%); padding:48px 32px 44px 32px;">
 
-              <!-- Confetti emojis for playfulness -->
               <div style="font-size:26px; line-height:26px; margin-bottom:14px;">🎉&nbsp;🎈&nbsp;🎂&nbsp;🎁&nbsp;✨</div>
 
               <div style="display:inline-block; background-color:rgba(255,255,255,0.22); color:#ffffff; font-size:13px; font-weight:600; letter-spacing:2px; text-transform:uppercase; padding:8px 18px; border-radius:999px;">
@@ -53,20 +48,20 @@
               </div>
 
               <h1 style="margin:22px 0 0 0; color:#ffffff; font-size:40px; line-height:1.1; font-weight:700; font-family:'Fredoka','Poppins',Helvetica,Arial,sans-serif; text-shadow:0 2px 8px rgba(0,0,0,0.12);">
-                <!-- cfg: COUSIN_NAME -->Rohan&rsquo;s<br>Birthday Bash!
+                <span data-cfg="name">Alex</span>&rsquo;s<br>Birthday Bash!
               </h1>
 
             </td>
           </tr>
 
-          <!-- ===================== BODY COPY ===================== -->
+          <!-- BODY COPY -->
           <tr>
             <td style="padding:40px 40px 8px 40px;">
               <p style="margin:0 0 16px 0; color:#3a2b3f; font-size:18px; line-height:1.6;">
-                Hi <strong style="color:#ff6b8a;"><!-- cfg: GUEST_NAME -->there</strong>! 👋
+                Hi <strong style="color:#ff6b8a;"><span data-cfg="greeting">there</span></strong>! 👋
               </p>
               <p style="margin:0 0 16px 0; color:#5a4b5f; font-size:16px; line-height:1.7;">
-                The countdown is on! <strong><!-- cfg: COUSIN_NAME -->Rohan</strong> is having a birthday
+                The countdown is on! <strong><span data-cfg="name">Alex</span></strong> is having a birthday
                 party, and it just wouldn&rsquo;t be the same without you.
                 We&rsquo;re throwing a celebration full of cake, games, and good vibes &mdash;
                 and we&rsquo;d love for you to be there.
@@ -77,7 +72,7 @@
             </td>
           </tr>
 
-          <!-- ===================== DATE STRIP ===================== -->
+          <!-- DATE STRIP -->
           <tr>
             <td style="padding:20px 40px 8px 40px;">
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#eaf7ff; border-radius:18px;">
@@ -85,48 +80,37 @@
                   <td align="center" style="padding:20px 16px;">
                     <div style="color:#0077a3; font-size:13px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase;">Save the Date</div>
                     <div style="color:#1a1a2e; font-size:22px; font-weight:700; font-family:'Fredoka','Poppins',Helvetica,Arial,sans-serif; margin-top:4px;">
-                      <!-- cfg: DATE -->Wednesday, July 15, 2026
+                      <span data-cfg="date">Wednesday, July 15, 2026</span>
                     </div>
-                    <div style="color:#5a4b5f; font-size:15px; margin-top:2px;"><!-- cfg: TIME -->4:00 PM Onwards</div>
+                    <div style="color:#5a4b5f; font-size:15px; margin-top:2px;"><span data-cfg="time">4:00 PM Onwards</span></div>
                   </td>
                 </tr>
               </table>
             </td>
           </tr>
 
-          <!-- ===================== CTA BUTTON ===================== -->
+          <!-- CTA BUTTON -->
           <tr>
             <td align="center" style="padding:28px 40px 40px 40px;">
-
-              <!--[if mso]>
-              <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://your-project.vercel.app" style="height:56px;v-text-anchor:middle;width:280px;" arcsize="50%" fillcolor="#ff6b8a" stroke="f">
-                <w:anchorlock/>
-                <center style="color:#ffffff;font-family:sans-serif;font-size:18px;font-weight:bold;">View Invitation &amp; Details</center>
-              </v:roundrect>
-              <![endif]-->
-
-              <!--[if !mso]><!-- -->
-              <a href="https://your-project.vercel.app" target="_blank"
+              <a data-cfg-href="landingUrl" href="https://bday-gold-pi.vercel.app/" target="_blank"
                  style="display:inline-block; background-color:#ff6b8a; background-image:linear-gradient(135deg,#ff8fa3 0%,#ff6b8a 100%); color:#ffffff; font-size:18px; font-weight:700; font-family:'Fredoka','Poppins',Helvetica,Arial,sans-serif; text-decoration:none; padding:18px 44px; border-radius:999px; box-shadow:0 10px 24px rgba(255,107,138,0.45);">
                 View Invitation &amp; Details &nbsp;&rarr;
               </a>
-              <!--<![endif]-->
 
               <p style="margin:18px 0 0 0; color:#a394ab; font-size:12px; line-height:1.5;">
                 Button not working? Copy this link into your browser:<br>
-                <!-- cfg: LANDING_URL (appears twice above + here) -->
-                <a href="https://your-project.vercel.app" target="_blank" style="color:#5bc0eb; text-decoration:underline; word-break:break-all;">https://your-project.vercel.app</a>
+                <a data-cfg-href="landingUrl" data-cfg="landingUrl" href="https://bday-gold-pi.vercel.app/" target="_blank" style="color:#5bc0eb; text-decoration:underline; word-break:break-all;">https://bday-gold-pi.vercel.app/</a>
               </p>
             </td>
           </tr>
 
-          <!-- ===================== FOOTER ===================== -->
+          <!-- FOOTER -->
           <tr>
             <td align="center" style="background-color:#fff8f0; padding:26px 32px;">
               <div style="font-size:20px; line-height:20px; margin-bottom:8px;">🎈</div>
               <p style="margin:0; color:#a394ab; font-size:13px; line-height:1.6;">
                 Can&rsquo;t wait to celebrate with you!<br>
-                With love, <!-- cfg: COUSIN_NAME -->Rohan&rsquo;s family
+                With love, <span data-cfg="name">Alex</span>&rsquo;s family
               </p>
             </td>
           </tr>
@@ -138,3 +122,24 @@
     </tr>
   </table>
 </div>
+
+  <script>
+    /* Fills the email from INVITE_CONFIG above. Runs when you open this file in
+       a browser. (See the sending note in README — open in a browser first,
+       then copy the page into Gmail so these values come along.) */
+    (function () {
+      var c = window.INVITE_CONFIG || {};
+      function apply(attr, fn) {
+        var nodes = document.querySelectorAll("[" + attr + "]");
+        for (var i = 0; i < nodes.length; i++) {
+          var key = nodes[i].getAttribute(attr);
+          if (c[key] !== undefined && c[key] !== null) fn(nodes[i], c[key]);
+        }
+      }
+      apply("data-cfg", function (el, val) { el.textContent = val; });
+      apply("data-cfg-href", function (el, val) { el.setAttribute("href", val); });
+      if (c.name) document.title = c.name + "'s Birthday Invitation";
+    })();
+  </script>
+</body>
+</html>
