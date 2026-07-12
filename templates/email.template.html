@@ -1,0 +1,132 @@
+<!--
+  ============================================================================
+  BIRTHDAY INVITATION EMAIL  (template)
+  ============================================================================
+  This is a TEMPLATE. The build (`npm run build`) injects values from .env
+  and writes the final file to public/email.html.
+
+  Build-time tokens (filled from .env):
+    {{COUSIN_NAME}}  - the birthday kid's name
+    {{GUEST_NAME}}   - how the email greets the reader (e.g. "there")
+    {{LANDING_URL}}  - the landing page URL
+
+  Tip: to personalise per recipient instead of a fixed greeting, set GUEST_NAME
+  in .env to your email tool's merge tag (e.g. *|FNAME|*).
+
+  Notes:
+    - All styling is INLINE for maximum email-client compatibility.
+    - Uses table-based layout (the only reliable email layout method).
+    - A "bulletproof" VML fallback keeps the button styled in Outlook.
+  ============================================================================
+-->
+<div style="margin:0; padding:0; width:100%; background-color:#fff2f5; background-image:linear-gradient(135deg,#fff2f5 0%,#eaf7ff 100%); font-family:'Poppins','Segoe UI',Helvetica,Arial,sans-serif;">
+
+  <!-- Preheader: shows as preview text in the inbox, hidden in the body -->
+  <div style="display:none; max-height:0; overflow:hidden; opacity:0; color:#fff2f5; font-size:1px; line-height:1px;">
+    You're invited! 🎉 {{COUSIN_NAME}}'s birthday party — tap to see the details.
+  </div>
+
+  <!-- Outer wrapper table (full width, centers the card) -->
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#fff2f5; background-image:linear-gradient(135deg,#fff2f5 0%,#eaf7ff 100%);">
+    <tr>
+      <td align="center" style="padding:32px 16px;">
+
+        <!-- Main card, max 600px wide -->
+        <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px; max-width:600px; background-color:#ffffff; border-radius:28px; overflow:hidden; box-shadow:0 20px 50px rgba(255,107,138,0.18);">
+
+          <!-- ===================== HEADER / HERO ===================== -->
+          <tr>
+            <td align="center" style="background-color:#ff6b8a; background-image:linear-gradient(135deg,#ff8fa3 0%,#ff6b8a 45%,#5bc0eb 130%); padding:48px 32px 44px 32px;">
+
+              <!-- Confetti emojis for playfulness -->
+              <div style="font-size:26px; line-height:26px; margin-bottom:14px;">🎉&nbsp;🎈&nbsp;🎂&nbsp;🎁&nbsp;✨</div>
+
+              <div style="display:inline-block; background-color:rgba(255,255,255,0.22); color:#ffffff; font-size:13px; font-weight:600; letter-spacing:2px; text-transform:uppercase; padding:8px 18px; border-radius:999px;">
+                You're Invited
+              </div>
+
+              <h1 style="margin:22px 0 0 0; color:#ffffff; font-size:40px; line-height:1.1; font-weight:700; font-family:'Fredoka','Poppins',Helvetica,Arial,sans-serif; text-shadow:0 2px 8px rgba(0,0,0,0.12);">
+                {{COUSIN_NAME}}&rsquo;s<br>Birthday Bash!
+              </h1>
+
+            </td>
+          </tr>
+
+          <!-- ===================== BODY COPY ===================== -->
+          <tr>
+            <td style="padding:40px 40px 8px 40px;">
+              <p style="margin:0 0 16px 0; color:#3a2b3f; font-size:18px; line-height:1.6;">
+                Hi <strong style="color:#ff6b8a;">{{GUEST_NAME}}</strong>! 👋
+              </p>
+              <p style="margin:0 0 16px 0; color:#5a4b5f; font-size:16px; line-height:1.7;">
+                The countdown is on! <strong>{{COUSIN_NAME}}</strong> is having a birthday
+                party, and it just wouldn&rsquo;t be the same without you.
+                We&rsquo;re throwing a celebration full of cake, games, and good vibes &mdash;
+                and we&rsquo;d love for you to be there.
+              </p>
+              <p style="margin:0 0 8px 0; color:#5a4b5f; font-size:16px; line-height:1.7;">
+                Tap the button below to see all the details and grab your digital invitation. 🎟️
+              </p>
+            </td>
+          </tr>
+
+          <!-- ===================== DATE STRIP ===================== -->
+          <tr>
+            <td style="padding:20px 40px 8px 40px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#eaf7ff; border-radius:18px;">
+                <tr>
+                  <td align="center" style="padding:20px 16px;">
+                    <div style="color:#0077a3; font-size:13px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase;">Save the Date</div>
+                    <div style="color:#1a1a2e; font-size:22px; font-weight:700; font-family:'Fredoka','Poppins',Helvetica,Arial,sans-serif; margin-top:4px;">
+                      {{PARTY_DATE_NOTE}}, {{PARTY_DATE}}
+                    </div>
+                    <div style="color:#5a4b5f; font-size:15px; margin-top:2px;">{{PARTY_TIME}} {{PARTY_TIME_NOTE}}</div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ===================== CTA BUTTON ===================== -->
+          <tr>
+            <td align="center" style="padding:28px 40px 40px 40px;">
+
+              <!--[if mso]>
+              <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{LANDING_URL}}" style="height:56px;v-text-anchor:middle;width:280px;" arcsize="50%" fillcolor="#ff6b8a" stroke="f">
+                <w:anchorlock/>
+                <center style="color:#ffffff;font-family:sans-serif;font-size:18px;font-weight:bold;">View Invitation &amp; Details</center>
+              </v:roundrect>
+              <![endif]-->
+
+              <!--[if !mso]><!-- -->
+              <a href="{{LANDING_URL}}" target="_blank"
+                 style="display:inline-block; background-color:#ff6b8a; background-image:linear-gradient(135deg,#ff8fa3 0%,#ff6b8a 100%); color:#ffffff; font-size:18px; font-weight:700; font-family:'Fredoka','Poppins',Helvetica,Arial,sans-serif; text-decoration:none; padding:18px 44px; border-radius:999px; box-shadow:0 10px 24px rgba(255,107,138,0.45);">
+                View Invitation &amp; Details &nbsp;&rarr;
+              </a>
+              <!--<![endif]-->
+
+              <p style="margin:18px 0 0 0; color:#a394ab; font-size:12px; line-height:1.5;">
+                Button not working? Copy this link into your browser:<br>
+                <a href="{{LANDING_URL}}" target="_blank" style="color:#5bc0eb; text-decoration:underline; word-break:break-all;">{{LANDING_URL}}</a>
+              </p>
+            </td>
+          </tr>
+
+          <!-- ===================== FOOTER ===================== -->
+          <tr>
+            <td align="center" style="background-color:#fff8f0; padding:26px 32px;">
+              <div style="font-size:20px; line-height:20px; margin-bottom:8px;">🎈</div>
+              <p style="margin:0; color:#a394ab; font-size:13px; line-height:1.6;">
+                Can&rsquo;t wait to celebrate with you!<br>
+                With love, {{COUSIN_NAME}}&rsquo;s family
+              </p>
+            </td>
+          </tr>
+
+        </table>
+        <!-- /Main card -->
+
+      </td>
+    </tr>
+  </table>
+</div>

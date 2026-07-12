@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<!--
+  This file is a TEMPLATE. Do not edit the generated public/index.html directly.
+  Change values in .env, then run `npm run build`. Tokens like {{COUSIN_NAME}}
+  are replaced at build time.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#ff6b8a" />
+  <title>You're Invited! 🎉 {{COUSIN_NAME}}'s Birthday</title>
+  <meta name="description" content="Join us for {{COUSIN_NAME}}'s birthday celebration. Tap to view details and download your invitation." />
+
+  <!-- Open Graph: nice preview when the link is shared in chats -->
+  <meta property="og:title" content="You're Invited to {{COUSIN_NAME}}'s Birthday Bash! 🎉" />
+  <meta property="og:description" content="{{PARTY_DATE}} · {{PARTY_TIME}} · Come celebrate with us!" />
+  <meta property="og:type" content="website" />
+
+  <!-- Fonts: Fredoka (playful display) + Poppins (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===================== DESIGN TOKENS ===================== */
+    :root {
+      --coral:        #ff6b8a;
+      --coral-soft:   #ff8fa3;
+      --sky:          #5bc0eb;
+      --sky-soft:     #7fd8f7;
+      --yellow:       #ffd166;
+      --cream:        #fff8f0;
+      --ink:          #3a2b3f;
+      --ink-soft:     #5a4b5f;
+      --muted:        #a394ab;
+
+      --radius-lg: 28px;
+      --radius-md: 20px;
+      --radius-pill: 999px;
+
+      --shadow-card: 0 18px 44px rgba(255, 107, 138, 0.16);
+      --shadow-btn:  0 12px 28px rgba(255, 107, 138, 0.45);
+
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ===================== RESET / BASE ===================== */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      color: var(--ink);
+      background: radial-gradient(1200px 600px at 15% -5%, #ffe3ea 0%, transparent 55%),
+                  radial-gradient(1000px 700px at 100% 10%, #dff3ff 0%, transparent 50%),
+                  linear-gradient(160deg, #fff2f5 0%, #fff9f0 45%, #eaf7ff 100%);
+      background-attachment: fixed;
+      overflow-x: hidden;
+    }
+
+    /* ===================== FLOATING BALLOON DECOR ===================== */
+    .decor {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .balloon {
+      position: absolute;
+      font-size: clamp(1.6rem, 4vw, 3rem);
+      opacity: 0.65;
+      animation: float 9s var(--ease) infinite;
+    }
+    .balloon:nth-child(1) { left: 6%;  top: 18%; animation-delay: 0s;   }
+    .balloon:nth-child(2) { left: 84%; top: 12%; animation-delay: 1.2s; }
+    .balloon:nth-child(3) { left: 90%; top: 62%; animation-delay: 2.4s; }
+    .balloon:nth-child(4) { left: 4%;  top: 70%; animation-delay: 0.6s; }
+    .balloon:nth-child(5) { left: 48%; top: 8%;  animation-delay: 1.8s; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(-4deg); }
+      50%      { transform: translateY(-22px) rotate(4deg); }
+    }
+
+    /* ===================== LAYOUT ===================== */
+    .page {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: clamp(20px, 5vw, 48px) clamp(16px, 5vw, 28px) 64px;
+    }
+
+    /* ===================== HERO CARD ===================== */
+    .hero {
+      position: relative;
+      text-align: center;
+      color: #fff;
+      border-radius: var(--radius-lg);
+      padding: clamp(40px, 8vw, 64px) clamp(24px, 6vw, 48px);
+      background: linear-gradient(135deg, var(--coral-soft) 0%, var(--coral) 48%, var(--sky) 135%);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+      animation: rise 0.7s var(--ease) both;
+    }
+    .hero::after {
+      /* subtle glossy sheen */
+      content: "";
+      position: absolute;
+      top: -40%; left: -20%;
+      width: 140%; height: 80%;
+      background: radial-gradient(closest-side, rgba(255,255,255,0.28), transparent);
+      pointer-events: none;
+    }
+    .confetti-row { font-size: clamp(1.4rem, 4vw, 2rem); letter-spacing: 6px; margin-bottom: 14px; }
+    .pill {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      padding: 8px 20px;
+      border-radius: var(--radius-pill);
+    }
+    .hero h1 {
+      font-family: 'Fredoka', 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: clamp(2.4rem, 9vw, 4rem);
+      line-height: 1.05;
+      margin: 22px 0 8px;
+      text-shadow: 0 3px 14px rgba(0, 0, 0, 0.14);
+    }
+    .hero .subtitle {
+      font-size: clamp(1rem, 3.4vw, 1.2rem);
+      font-weight: 500;
+      opacity: 0.95;
+      margin: 0;
+    }
+
+    /* ===================== SECTION TITLES ===================== */
+    .section-title {
+      text-align: center;
+      font-family: 'Fredoka', 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: clamp(1.3rem, 5vw, 1.7rem);
+      color: var(--ink);
+      margin: clamp(40px, 8vw, 56px) 0 4px;
+    }
+    .section-sub {
+      text-align: center;
+      color: var(--ink-soft);
+      font-size: 15px;
+      margin: 0 0 24px;
+    }
+
+    /* ===================== INFO CARDS (bento-ish grid) ===================== */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: clamp(12px, 3vw, 18px);
+    }
+    .card {
+      background: #fff;
+      border-radius: var(--radius-md);
+      padding: clamp(20px, 4vw, 26px);
+      box-shadow: var(--shadow-card);
+      transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+      animation: rise 0.7s var(--ease) both;
+    }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 24px 54px rgba(255,107,138,0.24); }
+    .card .icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px; height: 52px;
+      border-radius: 16px;
+      font-size: 26px;
+      margin-bottom: 14px;
+    }
+    .card .label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .card .value {
+      font-family: 'Fredoka', 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: clamp(1.05rem, 3.6vw, 1.35rem);
+      color: var(--ink);
+      line-height: 1.25;
+    }
+    .card .value small { display: block; font-family: 'Poppins'; font-weight: 400; font-size: 0.8rem; color: var(--ink-soft); margin-top: 4px; }
+
+    /* icon color variants */
+    .icon.date  { background: #ffe3ea; }
+    .icon.time  { background: #eaf7ff; }
+    .icon.dress { background: #e8f8ee; }
+
+    /* Make a card span full width for hierarchy */
+    .card.wide { grid-column: 1 / -1; }
+
+    /* ===================== DOWNLOAD CTA ===================== */
+    .cta-wrap {
+      text-align: center;
+      margin-top: clamp(36px, 7vw, 52px);
+      background: #fff;
+      border-radius: var(--radius-lg);
+      padding: clamp(32px, 6vw, 48px) clamp(24px, 5vw, 40px);
+      box-shadow: var(--shadow-card);
+    }
+    .cta-wrap h2 {
+      font-family: 'Fredoka', 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: clamp(1.4rem, 5vw, 1.9rem);
+      margin: 0 0 6px;
+      color: var(--ink);
+    }
+    .cta-wrap p { color: var(--ink-soft); font-size: 15px; margin: 0 0 26px; }
+
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, var(--coral-soft) 0%, var(--coral) 100%);
+      color: #fff;
+      font-family: 'Fredoka', 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.05rem, 3.6vw, 1.25rem);
+      text-decoration: none;
+      padding: 18px 42px;
+      border-radius: var(--radius-pill);
+      box-shadow: var(--shadow-btn);
+      transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn-download:hover  { transform: translateY(-3px) scale(1.02); box-shadow: 0 18px 38px rgba(255,107,138,0.55); }
+    .btn-download:active { transform: translateY(0) scale(0.99); }
+    .btn-download .arrow { transition: transform 0.25s var(--ease); }
+    .btn-download:hover .arrow { transform: translateX(4px); }
+
+    .cta-note { margin-top: 16px; font-size: 12px; color: var(--muted); }
+
+    /* ===================== FOOTER ===================== */
+    footer {
+      text-align: center;
+      margin-top: clamp(40px, 8vw, 56px);
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+    footer .heart { color: var(--coral); }
+
+    /* ===================== ANIMATIONS ===================== */
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    /* stagger the cards */
+    .card:nth-child(1) { animation-delay: 0.08s; }
+    .card:nth-child(2) { animation-delay: 0.16s; }
+    .card:nth-child(3) { animation-delay: 0.24s; }
+
+    /* Respect reduced-motion preferences */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+    }
+
+    /* Small phones: stack cards */
+    @media (max-width: 420px) {
+      .cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Floating decorative balloons (aria-hidden: purely decorative) -->
+  <div class="decor" aria-hidden="true">
+    <span class="balloon">🎈</span>
+    <span class="balloon">🎈</span>
+    <span class="balloon">🎉</span>
+    <span class="balloon">✨</span>
+    <span class="balloon">🎈</span>
+  </div>
+
+  <main class="page">
+
+    <!-- ===================== HERO ===================== -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="confetti-row" aria-hidden="true">🎂 🎁 🎈</div>
+      <span class="pill">You're Invited</span>
+      <h1 id="hero-heading">{{COUSIN_NAME}}'s<br />Birthday Bash!</h1>
+      <p class="subtitle">A day of cake, games &amp; good vibes — and it's not complete without you.</p>
+    </section>
+
+    <!-- ===================== PARTY DETAILS ===================== -->
+    <h2 class="section-title">The Party Details</h2>
+    <p class="section-sub">Everything you need to know 👇</p>
+
+    <div class="cards">
+      <div class="card">
+        <span class="icon date" aria-hidden="true">📅</span>
+        <div class="label">Date</div>
+        <div class="value">{{PARTY_DATE}}<small>{{PARTY_DATE_NOTE}}</small></div>
+      </div>
+
+      <div class="card">
+        <span class="icon time" aria-hidden="true">⏰</span>
+        <div class="label">Time</div>
+        <div class="value">{{PARTY_TIME}}<small>{{PARTY_TIME_NOTE}}</small></div>
+      </div>
+
+      <div class="card wide">
+        <span class="icon dress" aria-hidden="true">🎨</span>
+        <div class="label">Dress Code</div>
+        <div class="value">{{DRESS_CODE}}<small>{{DRESS_CODE_NOTE}}</small></div>
+      </div>
+    </div>
+
+    <!-- ===================== DOWNLOAD CTA ===================== -->
+    <section class="cta-wrap" aria-labelledby="cta-heading">
+      <h2 id="cta-heading">Your Digital Invitation 🎟️</h2>
+      <p>Tap below to download the full invitation to keep &amp; share.</p>
+
+      <a id="downloadBtn"
+         class="btn-download"
+         href="{{DOWNLOAD_URL}}"
+         target="_blank"
+         rel="noopener noreferrer">
+        <span aria-hidden="true">⬇️</span>
+        Download Digital Invitation
+        <span class="arrow" aria-hidden="true">→</span>
+      </a>
+
+      <p class="cta-note">Opens in a new tab · Free to download</p>
+    </section>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer>
+      <div style="font-size:22px; margin-bottom:6px;" aria-hidden="true">🎈</div>
+      Made with <span class="heart">♥</span> for {{COUSIN_NAME}}'s big day.<br />
+      Can't wait to celebrate with you!
+    </footer>
+
+  </main>
+
+  <!--
+  ============================================================================
+   VISITOR TRACKING ENGINE
+  ============================================================================
+   The TRACKING_ENDPOINT below is injected from .env at build time — you do
+   NOT edit it here. Set TRACKING_ENDPOINT in .env (the Web App URL from
+   webapp.js, ending in /exec) and run `npm run build`. Leave it blank to
+   disable tracking; the page still works and just logs a console notice.
+
+   What this does:
+     1. Fetches the visitor's IP / ISP (org) / country from a free public API.
+     2. Uses localStorage to mark unique vs returning visitors.
+     3. POSTs a "page_view" event immediately.
+     4. POSTs a "download_click" event when the Download button is clicked.
+  ============================================================================
+  -->
+  <script>
+    (function () {
+      "use strict";
+
+      // Injected from .env → do not edit here.
+      var TRACKING_ENDPOINT = "{{TRACKING_ENDPOINT}}";
+
+      var GEO_API = "https://ipapi.co/json/";
+      var STORAGE_KEY = "birthday_invite_visitor";
+
+      // --- Helpers -----------------------------------------------------------
+
+      // Is the endpoint actually configured? Avoids firing to a placeholder.
+      function isEndpointConfigured() {
+        return (
+          typeof TRACKING_ENDPOINT === "string" &&
+          TRACKING_ENDPOINT.indexOf("http") === 0 &&
+          TRACKING_ENDPOINT.indexOf("PASTE_YOUR") === -1
+        );
+      }
+
+      // Human-readable local timestamp, e.g. "Sun, Jul 12, 2026, 04:30:15 PM"
+      function readableTimestamp() {
+        try {
+          return new Date().toLocaleString(undefined, {
+            weekday: "short", year: "numeric", month: "short", day: "numeric",
+            hour: "2-digit", minute: "2-digit", second: "2-digit"
+          });
+        } catch (e) {
+          return new Date().toString();
+        }
+      }
+
+      // Determine unique vs returning using localStorage. Returns a status obj.
+      function resolveVisitorStatus() {
+        var status = { isUnique: true, firstSeen: null, visitCount: 1 };
+        try {
+          var raw = window.localStorage.getItem(STORAGE_KEY);
+          if (raw) {
+            var saved = JSON.parse(raw);
+            status.isUnique = false;
+            status.firstSeen = saved.firstSeen || null;
+            status.visitCount = (saved.visitCount || 1) + 1;
+          } else {
+            status.firstSeen = new Date().toISOString();
+          }
+          window.localStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify({ firstSeen: status.firstSeen, visitCount: status.visitCount })
+          );
+        } catch (e) {
+          // localStorage blocked (private mode / cookies off) — treat as unique,
+          // don't break the page.
+        }
+        return status;
+      }
+
+      // Fetch geo/network info; always resolves (never rejects) so tracking
+      // still fires even if the geo API is down or rate-limited.
+      function fetchNetworkInfo() {
+        if (!window.fetch) {
+          return Promise.resolve({ ip: "unknown", isp: "unknown", country: "unknown" });
+        }
+        return fetch(GEO_API, { method: "GET" })
+          .then(function (res) { return res.ok ? res.json() : {}; })
+          .then(function (data) {
+            return {
+              ip: data.ip || "unknown",
+              isp: data.org || "unknown",          // "org" is the ISP/organization
+              country: data.country_name || data.country || "unknown",
+              region: data.region || "",
+              city: data.city || ""
+            };
+          })
+          .catch(function () {
+            return { ip: "unknown", isp: "unknown", country: "unknown", region: "", city: "" };
+          });
+      }
+
+      // Send a JSON payload to the endpoint.
+      // Uses sendBeacon when available (survives page unload / new-tab nav),
+      // falls back to fetch with keepalive.
+      function sendEvent(payload) {
+        if (!isEndpointConfigured()) {
+          // Helpful during setup: log instead of silently doing nothing.
+          console.warn("[tracking] TRACKING_ENDPOINT not set — event NOT sent:", payload);
+          return;
+        }
+        var body = JSON.stringify(payload);
+        try {
+          if (navigator.sendBeacon) {
+            // text/plain avoids a CORS preflight against Apps Script.
+            var blob = new Blob([body], { type: "text/plain;charset=UTF-8" });
+            var ok = navigator.sendBeacon(TRACKING_ENDPOINT, blob);
+            if (ok) return;
+          }
+        } catch (e) { /* fall through to fetch */ }
+
+        if (window.fetch) {
+          fetch(TRACKING_ENDPOINT, {
+            method: "POST",
+            mode: "no-cors",            // Apps Script doesn't send CORS headers
+            keepalive: true,
+            headers: { "Content-Type": "text/plain;charset=UTF-8" },
+            body: body
+          }).catch(function (err) {
+            console.warn("[tracking] send failed:", err);
+          });
+        }
+      }
+
+      // Build the shared payload with event name + network + status details.
+      function buildPayload(eventName, net, status) {
+        return {
+          event: eventName,
+          isUnique: status.isUnique,
+          visitorType: status.isUnique ? "new" : "returning",
+          visitCount: status.visitCount,
+          ip: net.ip,
+          isp: net.isp,
+          country: net.country,
+          region: net.region,
+          city: net.city,
+          timestamp: readableTimestamp(),
+          isoTimestamp: new Date().toISOString(),
+          page: window.location.href,
+          referrer: document.referrer || "direct",
+          userAgent: navigator.userAgent,
+          language: navigator.language || "unknown"
+        };
+      }
+
+      // --- Main flow ---------------------------------------------------------
+
+      var visitorStatus = resolveVisitorStatus();
+
+      // Cache the network info so the download_click doesn't re-fetch.
+      var networkInfoPromise = fetchNetworkInfo();
+
+      // Fire the page_view as soon as we have network info.
+      networkInfoPromise.then(function (net) {
+        sendEvent(buildPayload("page_view", net, visitorStatus));
+      });
+
+      // Track the download button click.
+      var downloadBtn = document.getElementById("downloadBtn");
+      if (downloadBtn) {
+        downloadBtn.addEventListener("click", function () {
+          networkInfoPromise.then(function (net) {
+            sendEvent(buildPayload("download_click", net, visitorStatus));
+          });
+          // We do NOT preventDefault — the link opens normally in a new tab.
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
